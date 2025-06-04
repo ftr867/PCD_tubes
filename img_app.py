@@ -179,7 +179,11 @@ def main():
             st.session_state.equalize
         )
 
-        st.image(processed_image_pil, caption="Processed Image", use_container_width=True)
+        col1, col2 = st.columns(2)
+        with col1:
+            st.image(image, caption="Original Image", use_container_width=True)
+        with col2:
+            st.image(processed_image_pil, caption="Processed Image", use_container_width=True)
 
         original_name, original_extension = os.path.splitext(uploaded_file.name)
         processed_image_name_jpeg = f"{original_name}_processed.jpg"
