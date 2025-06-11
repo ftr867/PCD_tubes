@@ -75,7 +75,7 @@ def process_image(input_image, r_gain, g_gain, b_gain, brightness, contrast, fli
     if flop:
         img = img.transpose(Image.FLIP_LEFT_RIGHT)
 
-    # Histogram equalization (on grayscale, converted back to RGB)
+    # Histogram equalization
     if equalize:
         img = rgb_histogram_equalization(img)
 
@@ -112,11 +112,11 @@ def main():
     if uploaded_file is not None:
         image = Image.open(uploaded_file).convert("RGB")
 
-        # Initialize session state variables if not already present
+        # Inisiasi state
         if 'original_image' not in st.session_state:
             st.session_state.original_image = image.copy()
 
-        # Initialize attributes if not already present
+        # Inisiasi atribut jika belum ada
         if 'r_gain' not in st.session_state:
             st.session_state.r_gain = 1.0
         if 'g_gain' not in st.session_state:
@@ -137,7 +137,7 @@ def main():
         st.image(uploaded_file, caption="Uploaded Image", use_container_width=True)
         st.divider()
 
-        st.write("#### :crystal_ball: :blue[2. Adjust Image Parameters]")
+        st.write("#### :blue[2. Adjust Image Parameters]")
 
         col1, col2, col3 = st.columns(3)
         with col1:
